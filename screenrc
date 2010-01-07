@@ -1,0 +1,1 @@
+hardstatus alwayslastline "[%{+b B} %H %{-b k}]%{= w} %{= w} %-w%{= Bk} %n %t %{-}%+w %-=[%{B} %d-%m-%Y %{+b W}%c:%s%{-b}]"
