@@ -2,6 +2,11 @@
 require("awful")
 require("awful.autofocus")
 require("awful.rules")
+
+--Dynamic tagging
+--require("eminent")
+--require("shifty")
+
 -- Theme handling library
 require("beautiful")
 -- Notification library
@@ -13,7 +18,8 @@ beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 --terminal = "xterm"
-terminal = "urxvt -tr -tint black -sh 60 -fg white +sb"
+--terminal = "urxvt -tr -tint black -sh 60 -fg white +sb"
+terminal = "urxvt -tr -tint black -sh 60 -fg white +sb -fn 'xft:Terminus:pixelsize=12' " 
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -49,7 +55,50 @@ for s = 1, screen.count() do
     -- Each screen has its own tag table.
     tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
 end
--- }}}
+---- }}}
+
+--shifty.config.tags = {
+--   ["1:sys"] = { init = true, position = 1, screen = 1, layout=tile.bottom, ncol =2,                           },
+--   ["2:opera"] = { exclusive = true, max_clients = 2, position = 2, spawn = "opera"   },
+--  ["3:edit"] = { persist = true, position = 3,                                        },
+--  ["files"] = { nopopup = true, leave_kills = true, rel_index=1                                 },
+--     ["music"] = { icon = "/usr/share/pixmaps/exaile.png", icon_only = true,               },
+--    ["deluge"] = { layout = "tile", mwfact = 0.18, icon="/usr/share/pixmaps/deluge.png",  },
+--}
+--
+--shifty.config.apps = {
+--        { match = {"urxvt","htop"		    }, tag = "1:sys",        screen = 1,     },
+--        { match = {"opera.*"		       	    }, tag = "2:www",        screen = 1,     },
+--        { match = {"thunar","pcmanfm"               }, tag = "files",      screen = 1,     },
+--        { match = {"Deluge"             	    }, tag = "deluge",	     screen = 1,     },
+--        { match = { "" }, buttons = {
+--                             button({ }, 1, function (c) client.focus = c; c:raise() end),
+--                             button({ modkey }, 1, function (c) awful.mouse.client.move() end),
+--                             button({ modkey }, 3, awful.mouse.client.resize ), }, },
+--}
+--
+--shifty.config.defaults = {
+--  layout = "max", 
+--  run = function(tag) naughty.notify({ text = tag.name }) end,
+--}
+--
+--shifty.init()
+--
+--shifty.taglist = mytaglist
+
+
+autostart = false
+myautostart = {
+	"xscreensaver -nosplash",
+	"pidgin -n"
+}
+
+
+if autostart then
+	for app=1,#myautostart do
+		awful.uutil.spawn(myautostart[app])
+	end
+end
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
@@ -163,9 +212,15 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
+    --awful.key({ modkey, "Shift"          }, "Left",   shifty.shift_next       ),
+    --awful.key({ modkey,  "Shift"         }, "Right",  shifty.shift_prev       ),
+    awful.key({ modkey,    }, "Left",   awful.tag.viewprev       ),
+    awful.key({ modkey,    }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
+    --awful.key({ modkey            }, "t", function() shifty.add({ rel_index = 1 }) end),
+    --awful.key({ modkey, "Control" }, "t", function() shifty.add({ rel_index = 1, nopopup = true }) end),
+    --awful.key({ modkey,"Shift"            }, "r",           shifty.rename),
+    --awful.key({ modkey            }, "w",           shifty.del),
 
     awful.key({ modkey,           }, "j",
         function ()
@@ -240,6 +295,9 @@ for s = 1, screen.count() do
    keynumber = math.min(9, math.max(#tags[s], keynumber));
 end
 
+
+
+--
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it works on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
@@ -273,14 +331,44 @@ for i = 1, keynumber do
                   end))
 end
 
+--for i=1,9 do
+--  
+--  globalkeys = awful.util.table.join(globalkeys, awful.key({ modkey }, i,
+--  function ()
+--    local t = awful.tag.viewonly(shifty.getpos(i))
+--  end))
+--  globalkeys = awful.util.table.join(globalkeys, awful.key({ modkey, "Control" }, i,
+--  function ()
+--    local t = shifty.getpos(i)
+--    t.selected = not t.selected
+--  end))
+--  globalkeys = awful.util.table.join(globalkeys, awful.key({ modkey, "Control", "Shift" }, i,
+--  function ()
+--    if client.focus then
+--      awful.client.toggletag(shifty.getpos(i))
+--    end
+--  end))
+--  -- move clients to other tags
+--  globalkeys = awful.util.table.join(globalkeys, awful.key({ modkey, "Shift" }, i,
+--    function ()
+--      if client.focus then
+--        local t = shifty.getpos(i)
+--        awful.client.movetotag(t)
+--        awful.tag.viewonly(t)
+--      end
+--    end))
+--end
+--
 clientbuttons = awful.util.table.join(
     awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
     awful.button({ modkey }, 1, awful.mouse.client.move),
     awful.button({ modkey }, 3, awful.mouse.client.resize))
-
--- Set keys
+--
+---- Set keys
 root.keys(globalkeys)
--- }}}
+--shifty.config.globalkeys = globalkeys
+--shifty.config.clientkeys = clientkeys
+--}}}
 
 -- {{{ Rules
 awful.rules.rules = {
@@ -299,9 +387,8 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
-    -- Set Firefox to always map on tags number 2 of screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { tag = tags[1][2] } },
+    -- { rule = { class = "Opera" },
+      -- properties = { tag = tags[2] } },
 }
 -- }}}
 

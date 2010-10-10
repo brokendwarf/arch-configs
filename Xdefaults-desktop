@@ -1,15 +1,12 @@
-!shameless ripoff
-! desktop version
-!URxvt*font:             -windows-proggycleansz-medium-r-normal--13-80-96-96-c-70-*-*
-!URxvt*boldFont:         -windows-proggycleansz-medium-r-normal--13-80-96-96-c-70-*-*
-!URxvt*italicFont:       -windows-proggycleansz-medium-r-normal--13-80-96-96-c-70-*-*
-!URxvt*boldItalicFont:   -windows-proggycleansz-medium-r-normal--13-80-96-96-c-70-*-*
- 
-!URxvt*font:             -*-terminus-medium-r-*-*-12-120-*-*-*-*-*-*
-!URxvt*boldFont:         -*-terminus-medium-r-*-*-12-120-*-*-*-*-*-*
-!URxvt*italicFont:       -*-terminus-medium-r-*-*-12-120-*-*-*-*-*-*
-!URxvt*boldItalicFont:   -*-terminus-medium-r-*-*-12-120-*-*-*-*-*-*
- 
+Xcursor.theme:Bluecurve
+!------------
+!True Transparency
+!------------
+!set to 32-bit for real transparency (compositing required (see xcompmgr)
+urxvt*depth:             32
+!transparent=0000 opaque=ffff
+urxvt*background: rgba:1111/1111/1111/dddd
+!urxvt*background: rgba:1111/1111/1111/0000 
 URxvt*saveLines:        32767
 URxvt*scrollBar:        false
 URxvt*scrollBar_right:  true
@@ -18,48 +15,24 @@ URxvt*shading:          30
 URxvt*termName:         rxvt-unicode
 URxvt*secondaryScroll:  true
 urxvt*perl-lib:         /usr/lib/urxvt/perl/
-urxvt*perl-ext-common:  default,matcher,searchable-scrollback
-URxvt*urlLauncher:      /usr/bin/firefox-nightly
+urxvt*perl-ext-common:  default,tabbed,url-select,searchable-scrollback
+URxvt*urlLauncher:      /usr/bin/opera-devel
+URxvt:underlineURLs:	true
+URxvt:keysym.M-u:	perl:url-select:select_next
 URxvt*matcher.button:   1
-urxvt.cutchars:         `()'*<>[]{|}"
-URxvt*cutchars:         `"()'*<>[]{|}
 URxvt*visualBell:       true
 URxvt*keysym.C-u:       perl:matcher
 URxvt*urgentOnBell:     true
 URxvt*cursorColor:      #6dacd8
 !URxvt*inheritPixmap:    true
- 
-! IR_Black
-!URxvt*background:   #000000
-!URxvt*foreground:   #DCDCCC
-!black
-!URxvt*color0:       #4E4E4E
-!URxvt*color8:       #7C7C7C
-!red
-!URxvt*color1:       #FF6C60
-!URxvt*color9:       #FFB6B0
-!green
-!URxvt*color2:       #A8FF60
-!URxvt*color10:      #CEFFAB
-!yellow
-!URxvt*color3:       #FFFFB6
-!URxvt*color11:      #FFFFCB
-!blue
-!URxvt*color4:       #96CBFE
-!URxvt*color12:      #FFFFCB
-!magenta
-!URxvt*color5:       #FF73FD
-!URxvt*color13:      #FF9CFE
-!cyan
-!URxvt*color6:       #C6C5FE
-!URxvt*color14:      #DFDFFE
-!white
-!URxvt*color7:       #EEEEEE
-!URxvt*color15:      #FFFFFF
+URxvt.tabbed.tabbar-fg:	7
+URxvt.tabbed.tabbar-bg:	0
+URxvt.tabbed.tab-fg:	4
+URxvt.tabbed.tab-bg:	0
  
 ! Daisuke
 URxvt*background:       #000000
-URxvt*foreground:       #dcdccc
+URxvt*foreground:       #dfdfdf
 !black
 URxvt*color0:           #1e1e1e
 URxvt*color8:           #505050
@@ -85,60 +58,6 @@ URxvt*color14:          #c9dee8
 URxvt*color7:           #808080
 URxvt*color15:          #b0b0b0
  
-! Light
-!URxvt*background: #f0f0f0
-!URxvt*foreground: #22303d
-! black
-!URxvt*color0:    #cbd9e2
-!URxvt*color8:    #666666
-! red
-!URxvt*color1:    #6dacd8
-!URxvt*color9:    #62aada
-! green
-!URxvt*color2:    #315b81
-!URxvt*color10:    #477ea7
-! yellow
-!URxvt*color3:    #4282b0
-!URxvt*color11:    #62aada
-! blue
-!URxvt*color4:    #315b81
-!URxvt*color12:    #477ea7
-! magenta
-!URxvt*color5:    #4282b0
-!URxvt*color13:    #62aada
-! cyan
-!URxvt*color6:    #315b81
-!URxvt*color14:    #477ea7
-! white
-!URxvt*color7:    #22303d
-!URxvt*color15:    #444444
- 
-! Tango
-! Black
-!URxvt*color0:  #1e1e1e
-!URxvt*color8:  #555753
-! Red
-!URxvt*color1:  #CC0000
-!URxvt*color9:  #EF2929
-! Green
-!URxvt*color2:  #4E9A06
-!URxvt*color10: #8AE234
-! Yellow
-!URxvt*color3:  #C4A000
-!URxvt*color11: #FCE94F
-! Blue
-!URxvt*color4:  #3465A4
-!URxvt*color12: #729FCF
-! Purple
-!URxvt*color5:  #75507B
-!URxvt*color13: #AD7FA8
-! Cyan
-! have to use rgb: here, doesn't work otherwise :O
-!URxvt*color6:  rgb:06/98/9A
-!URxvt*color14: #34E2E2
-! White
-!URxvt*color7:  #9f9f9f
-!URxvt*color15: #e0e0e0
  
 ! Zenburn
 !URxvt*background:  #3F3F3F
