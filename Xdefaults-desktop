@@ -15,7 +15,7 @@ URxvt*shading:          30
 URxvt*termName:         rxvt-unicode
 URxvt*secondaryScroll:  true
 urxvt*perl-lib:         /usr/lib/urxvt/perl/
-urxvt*perl-ext-common:  default,tabbed,url-select,searchable-scrollback
+urxvt*perl-ext-common:  default,tabbedex,url-select,searchable-scrollback
 URxvt*urlLauncher:      /usr/bin/opera-devel
 URxvt:underlineURLs:	true
 URxvt:keysym.M-u:	perl:url-select:select_next
