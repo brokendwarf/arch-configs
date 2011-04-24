@@ -14,7 +14,7 @@ require("naughty")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.init("/home/brokendwarf/.config/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 --terminal = "urxvt -tr -tint black -sh 60 -fg white +sb"
@@ -254,6 +254,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
+    -- Transparency hax
+    
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
@@ -363,7 +365,11 @@ end
 clientbuttons = awful.util.table.join(
     awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
     awful.button({ modkey }, 1, awful.mouse.client.move),
-    awful.button({ modkey }, 3, awful.mouse.client.resize))
+    awful.button({ modkey }, 3, awful.mouse.client.resize),
+    awful.button({ modkey, "Shift" }, 1, awful.mouse.client.resize), -- laptop variation
+    awful.button({ modkey }, 4, function () awful.util.spawn("/usr/bin/transset-df --inc 0.1 -p") end),
+    awful.button({ modkey }, 5, function () awful.util.spawn("/usr/bin/transset-df --dec 0.1 -p -m 0.2") end)
+    )
 --
 ---- Set keys
 root.keys(globalkeys)
@@ -384,7 +390,11 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "Vlc" },
       properties = { floating = true } },
-    { rule = { class = "pinentry" },
+    { rule = { class = "Gvim" },
+      properties = { floating = true } },
+    { rule = { class = "Doublecmd" },
+      properties = { floating = true } },
+    { rule = { class = "Mirage" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
