@@ -88,6 +88,8 @@ end
 
 autostart = true
 myautostart = {
+	"setxkbmap 'us(colemak)'",
+	"xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'"
 	"xscreensaver -nosplash",
 	"pidgin -n",
 	"urxvtd",
@@ -223,12 +225,12 @@ globalkeys = awful.util.table.join(
     --awful.key({ modkey,"Shift"            }, "r",           shifty.rename),
     --awful.key({ modkey            }, "w",           shifty.del),
 
-    awful.key({ modkey,           }, "j",
+    awful.key({ modkey,           }, "e",
         function ()
             awful.client.focus.byidx( 1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "k",
+    awful.key({ modkey,           }, "i",
         function ()
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
@@ -236,10 +238,10 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "w", function () mymainmenu:show(true)        end),
 
     -- Layout manipulation
-    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
-    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
-    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
+    awful.key({ modkey, "Shift"   }, "e", function () awful.client.swap.byidx(  1)    end),
+    awful.key({ modkey, "Shift"   }, "i", function () awful.client.swap.byidx( -1)    end),
+    awful.key({ modkey, "Control" }, "e", function () awful.screen.focus_relative( 1) end),
+    awful.key({ modkey, "Control" }, "i", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
     awful.key({ modkey,           }, "Tab",
         function ()
@@ -256,12 +258,12 @@ globalkeys = awful.util.table.join(
 
     -- Transparency hax
     
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
-    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
-    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
-    awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
-    awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
+    awful.key({ modkey,           }, "o",     function () awful.tag.incmwfact( 0.05)    end),
+    awful.key({ modkey,           }, "n",     function () awful.tag.incmwfact(-0.05)    end),
+    awful.key({ modkey, "Shift"   }, "n",     function () awful.tag.incnmaster( 1)      end),
+    awful.key({ modkey, "Shift"   }, "o",     function () awful.tag.incnmaster(-1)      end),
+    awful.key({ modkey, "Control" }, "n",     function () awful.tag.incncol( 1)         end),
+    awful.key({ modkey, "Control" }, "o",     function () awful.tag.incncol(-1)         end),
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 

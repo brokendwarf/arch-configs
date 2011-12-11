@@ -7,7 +7,7 @@ urxvt*depth:             32
 !transparent=0000 opaque=ffff
 urxvt*background: rgba:1111/1111/1111/dddd
 !urxvt*background: rgba:1111/1111/1111/0000 
-URxvt*saveLines:        32767
+URxvt*saveLines:        4096 
 URxvt*scrollBar:        false
 URxvt*scrollBar_right:  true
 URxvt*loginShell:       true
@@ -15,8 +15,8 @@ URxvt*shading:          30
 URxvt*termName:         rxvt-unicode
 URxvt*secondaryScroll:  true
 urxvt*perl-lib:         /usr/lib/urxvt/perl/
-urxvt*perl-ext-common:  default,tabbedex,url-select,searchable-scrollback
-URxvt*urlLauncher:      /usr/bin/opera-devel
+urxvt*perl-ext-common:  default,tabbedex,matcher,searchable-scrollback
+URxvt*urlLauncher:      /usr/bin/opera
 URxvt:underlineURLs:	true
 URxvt:keysym.M-u:	perl:url-select:select_next
 URxvt*matcher.button:   1
